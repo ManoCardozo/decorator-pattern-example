@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoffeeShopMenu
+namespace CoffeeShopMenu.ConsoleUI
 {
     class Program
     {
