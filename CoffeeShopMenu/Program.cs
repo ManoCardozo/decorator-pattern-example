@@ -1,38 +1,54 @@
 ﻿using System;
 using System.Linq;
 using CoffeeShopMenu.Application.Services;
+using CoffeeShopMenu.Domain.Enums;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoffeeShopMenu.ConsoleUI
 {
     class Program
     {
-        private static ServiceProvider ServiceProvider = DependencyInjection.Setup();
+        private static readonly ServiceProvider ServiceProvider = DependencyInjection.Setup();
+
         static void Main(string[] args)
         {
-            ShowMainMenu();
+            var coffeeType = DisplayMainMenu();
         }
 
-        private static void ShowMainMenu()
+        private static CoffeeType DisplayMainMenu()
         {
             var coffeeService = ServiceProvider.GetService<ICoffeeService>();
 
-            var coffeeOptions = coffeeService
+            CoffeeType? result = null;
+            while (result == null)
+            {
+                Console.Clear();
+
+                var coffeeOptions = coffeeService
                 .ListAll()
                 .OrderBy(c => (int)c.CoffeeType);
 
-            foreach (var option in coffeeOptions)
-            {
-                Console.WriteLine($"{(int)option.CoffeeType} - {option.Description} : {option.Price.ToString("C")}");
+                foreach (var option in coffeeOptions)
+                {
+                    Console.WriteLine($"{(int)option.CoffeeType} - {option.Description} : {option.Price.ToString("C")}");
+                }
+
+                var optionSelected = Console.ReadLine();
+                var selected = int.Parse(optionSelected.ToString());
+
+                if (!coffeeOptions.Select(c => (int)c.CoffeeType).Contains(selected))
+                {
+                    Console.WriteLine("Invalid option. Press any key to continue...");
+                    Console.ReadKey();
+                    continue;
+                }
+                else
+                {
+                    result = (CoffeeType) selected;
+                }
             }
 
-            var optionSelected = Console.ReadLine();
-            var selected = int.Parse(optionSelected.ToString());
-
-            if (!coffeeOptions.Select(c => (int)c.CoffeeType).Contains(selected))
-            {
-                ShowMainMenu();
-            }
+            return result.Value;
         }
     }
 }
