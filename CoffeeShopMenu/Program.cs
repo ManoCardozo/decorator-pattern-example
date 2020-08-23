@@ -1,7 +1,7 @@
 ﻿using System;
-using CoffeeShopMenu.Application.Factories;
-using CoffeeShopMenu.Application.Services;
 using CoffeeShopMenu.ConsoleUI.Screens;
+using CoffeeShopMenu.Application.Services;
+using CoffeeShopMenu.Application.Factories;
 
 namespace CoffeeShopMenu.ConsoleUI
 {
@@ -21,7 +21,7 @@ namespace CoffeeShopMenu.ConsoleUI
                 {
                     AddOrder();
                 }
-                while (IsOrderComplete());
+                while (!IsOrderComplete());
                 
                 orderScreen.DisplayOrder();
 
