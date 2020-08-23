@@ -1,5 +1,5 @@
-﻿using CoffeeShopMenu.Application.Factories;
-using CoffeeShopMenu.Application.Services;
+﻿using CoffeeShopMenu.Application.Services;
+using CoffeeShopMenu.Application.Factories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoffeeShopMenu.ConsoleUI

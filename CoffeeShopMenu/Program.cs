@@ -51,7 +51,9 @@ namespace CoffeeShopMenu.ConsoleUI
         {
             Console.WriteLine("\nAdd another coffee to your order? Y/N");
 
-            return !string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
+            var isOrderComplete = !string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
+
+            return isOrderComplete;
         }
 
         private static bool ExitProgram()
