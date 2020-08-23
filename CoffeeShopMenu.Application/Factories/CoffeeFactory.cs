@@ -4,7 +4,7 @@ using CoffeeShopMenu.Domain.Entities;
 
 namespace CoffeeShopMenu.Application.Factories
 {
-    public class CoffeeFactory
+    public class CoffeeFactory : ICoffeeFactory
     {
         public ICoffee Create(CoffeeType coffeeType)
         {

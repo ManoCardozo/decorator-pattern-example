@@ -1,4 +1,5 @@
-﻿using CoffeeShopMenu.Application.Services;
+﻿using CoffeeShopMenu.Application.Factories;
+using CoffeeShopMenu.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoffeeShopMenu.ConsoleUI
@@ -8,6 +9,9 @@ namespace CoffeeShopMenu.ConsoleUI
         public static ServiceProvider Setup() =>
                 new ServiceCollection()
                 .AddTransient<ICoffeeService, CoffeeService>()
+                .AddTransient<IAddOnService, AddOnService>()
+                .AddTransient<ICoffeeFactory, CoffeeFactory>()
+                .AddTransient<IAddOnFactory, AddOnFactory>()
                 .BuildServiceProvider();
     }
 }

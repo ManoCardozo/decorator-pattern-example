@@ -5,7 +5,7 @@ using CoffeeShopMenu.Domain.Decorators;
 
 namespace CoffeeShopMenu.Application.Factories
 {
-    public class AddOnFactory
+    public class AddOnFactory : IAddOnFactory
     {
         public IAddOnDecorator Create(ICoffee coffee, AddOnType addOnType)
         {
