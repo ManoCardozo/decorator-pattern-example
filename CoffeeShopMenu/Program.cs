@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using CoffeeShopMenu.Application.Factories;
 using CoffeeShopMenu.Application.Services;
-using CoffeeShopMenu.Domain.Entities;
+using CoffeeShopMenu.Domain.Entities.Coffee;
 using CoffeeShopMenu.Domain.Enums;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,22 +16,61 @@ namespace CoffeeShopMenu.ConsoleUI
         private static readonly ICoffeeFactory coffeeFactory = ServiceProvider.GetService<ICoffeeFactory>();
         private static readonly IAddOnFactory addOnFactory = ServiceProvider.GetService<IAddOnFactory>();
         private static readonly IAddOnService addOnService = ServiceProvider.GetService<IAddOnService>();
+        private static readonly IOrderService orderService = ServiceProvider.GetService<IOrderService>();
 
         static void Main(string[] args)
         {
-            var coffeeType = GetCoffeeType();
+            var orderComplete = false;
+            while (!orderComplete)
+            {
+                var coffeeType = GetCoffeeType();
 
-            var coffee = coffeeFactory.Create(coffeeType);
+                var coffee = coffeeFactory.Create(coffeeType);
 
-            coffee = ApplyAddOns(coffee);
+                coffee = ApplyAddOns(coffee);
 
+                orderService.AddToCart(coffee);
+
+                Console.WriteLine();
+                Console.WriteLine("Add another coffee to your order? Y/N");
+
+                orderComplete = !string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
+            }
+
+            DisplayOrder();
+        }
+
+        private static void DisplayOrder()
+        {
             Console.Clear();
-            Console.WriteLine("Your Order:");
-            Console.WriteLine(coffee.GetDescription());
-            Console.WriteLine($"Price: {coffee.GetPrice()}");
-            Console.WriteLine();
+
+            var builder = new StringBuilder();
+            builder.AppendLine("Please Review Your Order");
+            builder.AppendLine(GetSeparator());
+            builder.AppendLine();
+
+            var totalPrice = 0M;
+            var orderedItems = orderService.GetOrderItems();
+            foreach (var item in orderedItems)
+            {
+                var description = item.GetDescription();
+                var price = item.GetPrice();
+
+                builder.AppendLine(description);
+                builder.AppendLine($"Price: {price}");
+                builder.AppendLine();
+
+                totalPrice += price;
+            }
+
+            Console.Write(builder);
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
+        }
+
+        private static string GetSeparator()
+        {
+            return "---------------------------------------";
         }
 
         private static CoffeeType GetCoffeeType()
@@ -39,7 +78,7 @@ namespace CoffeeShopMenu.ConsoleUI
             CoffeeType? result = null;
             while (result == null)
             {
-                ShowMainMenu();
+                DisplayMainMenu();
 
                 var optionSelected = Console
                     .ReadLine()
@@ -62,7 +101,7 @@ namespace CoffeeShopMenu.ConsoleUI
             return result.Value;
         }
 
-        private static void ShowMainMenu()
+        private static void DisplayMainMenu()
         {
             var coffeeOptions = coffeeService
                 .ListAll()
@@ -72,6 +111,7 @@ namespace CoffeeShopMenu.ConsoleUI
 
             var builder = new StringBuilder();
             builder.AppendLine("MAIN MENU");
+            builder.AppendLine(GetSeparator());
             builder.AppendLine();
 
             foreach (var option in coffeeOptions)
@@ -88,7 +128,7 @@ namespace CoffeeShopMenu.ConsoleUI
 
             while (!done)
             {
-                ShowAddOnMenu();
+                DisplayAddOnMenu();
 
                 var optionSelected = Console.ReadLine();
                 var selected = int.Parse(optionSelected.ToString());
@@ -116,7 +156,7 @@ namespace CoffeeShopMenu.ConsoleUI
             return coffee;
         }
 
-        private static void ShowAddOnMenu()
+        private static void DisplayAddOnMenu()
         {
             var addOnOptions = addOnService
                 .ListAll()
@@ -126,6 +166,7 @@ namespace CoffeeShopMenu.ConsoleUI
 
             var builder = new StringBuilder();
             builder.AppendLine("ADD ON MENU");
+            builder.AppendLine(GetSeparator());
             builder.AppendLine();
 
             foreach (var option in addOnOptions)
@@ -134,7 +175,7 @@ namespace CoffeeShopMenu.ConsoleUI
             }
 
             builder.AppendLine();
-            builder.AppendLine($"0-Finish order");
+            builder.AppendLine($"0 - Add to Cart");
 
             Console.Write(builder);
         }

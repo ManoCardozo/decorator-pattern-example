@@ -1,5 +1,4 @@
-﻿using CoffeeShopMenu.Domain.Entities;
-using System.Collections.Generic;
+﻿using CoffeeShopMenu.Domain.Entities.Coffee;
 
 namespace CoffeeShopMenu.Application.Decorators
 {

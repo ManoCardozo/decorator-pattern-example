@@ -3,8 +3,9 @@ using CoffeeShopMenu.Domain.Entities.Coffee;
 
 namespace CoffeeShopMenu.Application.Services
 {
-    public interface ICoffeeService
+    public interface IOrderService
     {
-        IEnumerable<ICoffeeBase> ListAll();
+        void AddToCart(ICoffee coffee);
+        List<ICoffee> GetOrderItems();
     }
 }

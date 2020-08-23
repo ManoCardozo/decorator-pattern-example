@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CoffeeShopMenu.Domain.Entities;
+using CoffeeShopMenu.Domain.Entities.AddOn;
 
 namespace CoffeeShopMenu.Application.Services
 {

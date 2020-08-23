@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CoffeeShopMenu.Domain.Entities
+﻿namespace CoffeeShopMenu.Domain.Entities.Coffee
 {
     public interface ICoffee
     {

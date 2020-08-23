@@ -1,6 +1,6 @@
 ﻿using CoffeeShopMenu.Domain.Enums;
 
-namespace CoffeeShopMenu.Domain.Entities
+namespace CoffeeShopMenu.Domain.Entities.AddOn
 {
     public class Milk : IAddOn
     {
@@ -12,7 +12,7 @@ namespace CoffeeShopMenu.Domain.Entities
 
         public override string ToString()
         {
-            return $"{(int)AddOnType}-{Description}:\t{Price.ToString("C")}";
+            return $"{(int)AddOnType} - {Description}:\t{Price.ToString("C")}";
         }
     }
 }

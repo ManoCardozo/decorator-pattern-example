@@ -3,13 +3,13 @@ using CoffeeShopMenu.Domain.Entities.Coffee;
 
 namespace CoffeeShopMenu.Application.Decorators
 {
-    public class MilkDecorator : IAddOnDecorator
+    public class WhippedCreamDecorator : IAddOnDecorator
     {
-        private readonly Milk milk;
+        private readonly WhippedCream whippedCream;
 
-        public MilkDecorator(ICoffee coffee)
+        public WhippedCreamDecorator(ICoffee coffee)
         {
-            this.milk = new Milk();
+            this.whippedCream = new WhippedCream();
             this.Coffee = coffee;
         }
 
@@ -17,12 +17,12 @@ namespace CoffeeShopMenu.Application.Decorators
 
         public string GetDescription()
         {
-            return $"{Coffee.GetDescription()} \n + {milk.Description}";
+            return $"{Coffee.GetDescription()} \n + {whippedCream.Description}";
         }
 
         public decimal GetPrice()
         {
-            return Coffee.GetPrice() + milk.Price;
+            return Coffee.GetPrice() + whippedCream.Price;
         }
     }
 }

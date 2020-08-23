@@ -1,5 +1,5 @@
-﻿using CoffeeShopMenu.Domain.Entities;
-using CoffeeShopMenu.Domain.Enums;
+﻿using CoffeeShopMenu.Domain.Enums;
+using CoffeeShopMenu.Domain.Entities.Coffee;
 
 namespace CoffeeShopMenu.Application.Factories
 {

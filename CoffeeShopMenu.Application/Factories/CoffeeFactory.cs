@@ -1,6 +1,6 @@
 ﻿using System;
 using CoffeeShopMenu.Domain.Enums;
-using CoffeeShopMenu.Domain.Entities;
+using CoffeeShopMenu.Domain.Entities.Coffee;
 
 namespace CoffeeShopMenu.Application.Factories
 {
@@ -21,6 +21,9 @@ namespace CoffeeShopMenu.Application.Factories
 
                 case CoffeeType.DeCaf:
                     return new DeCaf();
+
+                case CoffeeType.Mocha:
+                    return new Mocha();
 
                 default:
                     throw new ArgumentException();

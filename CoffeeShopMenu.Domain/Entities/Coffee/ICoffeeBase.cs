@@ -1,10 +1,10 @@
 ﻿using CoffeeShopMenu.Domain.Enums;
 
-namespace CoffeeShopMenu.Domain.Entities
+namespace CoffeeShopMenu.Domain.Entities.Coffee
 {
-    public interface IAddOn
+    public interface ICoffeeBase
     {
-        AddOnType AddOnType { get; }
+        CoffeeType CoffeeType { get; }
 
         string Description { get; }
 

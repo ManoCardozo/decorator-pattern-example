@@ -1,7 +1,6 @@
 ﻿using CoffeeShopMenu.Domain.Enums;
-using System.Collections.Generic;
 
-namespace CoffeeShopMenu.Domain.Entities
+namespace CoffeeShopMenu.Domain.Entities.Coffee
 {
     public class Cappuccino : ICoffeeBase, ICoffee
     {
@@ -23,7 +22,7 @@ namespace CoffeeShopMenu.Domain.Entities
 
         public override string ToString()
         {
-            return $"{(int)CoffeeType}-{Description}:\t{Price.ToString("C")}";
+            return $"{(int)CoffeeType} - {Description}:\t{Price.ToString("C")}";
         }
     }
 }

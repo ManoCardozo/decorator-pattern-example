@@ -6,12 +6,12 @@ namespace CoffeeShopMenu.ConsoleUI
 {
     public class DependencyInjection
     {
-        public static ServiceProvider Setup() =>
-                new ServiceCollection()
-                .AddTransient<ICoffeeService, CoffeeService>()
-                .AddTransient<IAddOnService, AddOnService>()
-                .AddTransient<ICoffeeFactory, CoffeeFactory>()
-                .AddTransient<IAddOnFactory, AddOnFactory>()
-                .BuildServiceProvider();
+        public static ServiceProvider Setup() => new ServiceCollection()
+            .AddTransient<ICoffeeService, CoffeeService>()
+            .AddTransient<IAddOnService, AddOnService>()
+            .AddTransient<ICoffeeFactory, CoffeeFactory>()
+            .AddTransient<IAddOnFactory, AddOnFactory>()
+            .AddTransient<IOrderService, OrderService>()
+            .BuildServiceProvider();
     }
 }

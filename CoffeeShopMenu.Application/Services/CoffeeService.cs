@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CoffeeShopMenu.Domain.Entities;
+using CoffeeShopMenu.Domain.Entities.Coffee;
 
 namespace CoffeeShopMenu.Application.Services
 {
@@ -11,6 +11,7 @@ namespace CoffeeShopMenu.Application.Services
             yield return new Cappuccino();
             yield return new DeCaf();
             yield return new Espresso();
+            yield return new Mocha();
         }
     }
 }
