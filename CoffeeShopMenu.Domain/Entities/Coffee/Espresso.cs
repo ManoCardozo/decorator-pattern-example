@@ -22,7 +22,7 @@ namespace CoffeeShopMenu.Domain.Entities.Coffee
 
         public override string ToString()
         {
-            return $"{(int)CoffeeType} - {Description}:\t{Price.ToString("C")}";
+            return $"{(int)CoffeeType} - {Description}:\t\t{Price.ToString("C")}";
         }
     }
 }

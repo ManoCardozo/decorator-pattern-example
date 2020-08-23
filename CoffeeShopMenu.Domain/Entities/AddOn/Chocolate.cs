@@ -12,7 +12,7 @@ namespace CoffeeShopMenu.Domain.Entities.AddOn
 
         public override string ToString()
         {
-            return $"{(int)AddOnType} - {Description}:\t{Price.ToString("C")}";
+            return $"{(int)AddOnType} - {Description}:\t\t{Price.ToString("C")}";
         }
     }
 }

@@ -57,7 +57,7 @@ namespace CoffeeShopMenu.ConsoleUI
                 var price = item.GetPrice();
 
                 builder.AppendLine(description);
-                builder.AppendLine($"Price: {price}");
+                builder.AppendLine($"Price: {price.ToString("C")}");
                 builder.AppendLine();
 
                 totalPrice += price;
@@ -70,7 +70,7 @@ namespace CoffeeShopMenu.ConsoleUI
 
         private static string GetSeparator()
         {
-            return "---------------------------------------";
+            return "-------------------------------";
         }
 
         private static CoffeeType GetCoffeeType()
