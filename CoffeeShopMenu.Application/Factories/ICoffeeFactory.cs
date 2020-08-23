@@ -5,6 +5,6 @@ namespace CoffeeShopMenu.Application.Factories
 {
     public interface ICoffeeFactory
     {
-        ICoffee Create(CoffeeType coffeeType);
+        ICoffeeBase Create(CoffeeType coffeeType);
     }
 }

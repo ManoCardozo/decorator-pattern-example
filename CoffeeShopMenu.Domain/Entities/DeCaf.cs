@@ -2,7 +2,7 @@
 
 namespace CoffeeShopMenu.Domain.Entities
 {
-    public class DeCaf : ICoffee
+    public class DeCaf : ICoffeeBase
     {
         public CoffeeType CoffeeType => CoffeeType.DeCaf;
 

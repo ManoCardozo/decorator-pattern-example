@@ -1,10 +1,10 @@
-﻿using CoffeeShopMenu.Domain.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CoffeeShopMenu.Domain.Entities;
 
 namespace CoffeeShopMenu.Application.Services
 {
     public interface ICoffeeService
     {
-        IEnumerable<ICoffee> ListAll();
+        IEnumerable<ICoffeeBase> ListAll();
     }
 }

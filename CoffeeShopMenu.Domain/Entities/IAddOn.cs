@@ -2,9 +2,9 @@
 
 namespace CoffeeShopMenu.Domain.Entities
 {
-    public interface ICoffee
+    public interface IAddOn
     {
-        CoffeeType CoffeeType { get; }
+        AddOnType AddOnType { get; }
 
         string Description { get; }
 

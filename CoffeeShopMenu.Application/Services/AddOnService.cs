@@ -1,17 +1,13 @@
-﻿using CoffeeShopMenu.Domain.Decorators;
-using CoffeeShopMenu.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using CoffeeShopMenu.Domain.Entities;
 
 namespace CoffeeShopMenu.Application.Services
 {
     public class AddOnService : IAddOnService
     {
-        public IEnumerable<AddOnType> ListAll()
+        public IEnumerable<IAddOn> ListAll()
         {
-            return Enum.GetValues(typeof(AddOnType)).Cast<AddOnType>();
+            yield return new Milk();
         }
     }
 }

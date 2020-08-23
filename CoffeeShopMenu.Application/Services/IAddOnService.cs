@@ -1,10 +1,10 @@
-﻿using CoffeeShopMenu.Domain.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CoffeeShopMenu.Domain.Entities;
 
 namespace CoffeeShopMenu.Application.Services
 {
     public interface IAddOnService
     {
-        IEnumerable<AddOnType> ListAll();
+        IEnumerable<IAddOn> ListAll();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using CoffeeShopMenu.Application.Factories;
 using CoffeeShopMenu.Application.Services;
 using CoffeeShopMenu.Domain.Entities;
@@ -18,9 +19,10 @@ namespace CoffeeShopMenu.ConsoleUI
 
         static void Main(string[] args)
         {
-            var coffeeType = DisplayMainMenu();
+            var coffeeType = GetCoffeeType();
 
             var coffee = coffeeFactory.Create(coffeeType);
+
             coffee = ApplyAddOns(coffee);
 
             Console.WriteLine($"Price: {coffee.Price}");
@@ -28,74 +30,104 @@ namespace CoffeeShopMenu.ConsoleUI
             Console.ReadKey();
         }
 
-        private static ICoffee ApplyAddOns(ICoffee coffee)
-        {
-            var done = false;
-
-            while (!done)
-            {
-                Console.Clear();
-                Console.WriteLine("ADD ONS");
-
-                var addOnOptions = addOnService
-                .ListAll()
-                .OrderBy(c => (int)c);
-
-                foreach (var option in addOnOptions)
-                {
-                    Console.WriteLine($"{(int)option}-{option}");
-                }
-
-                var optionSelected = Console.ReadLine();
-
-                if (optionSelected == "0")
-                {
-                    done = true;
-                }
-                else
-                {
-                    var selected = int.Parse(optionSelected.ToString());
-                    var addOnType = (AddOnType)selected;
-                    coffee = addOnFactory.Create(coffee, addOnType);
-                }
-            }
-
-            return coffee;
-        }
-
-        private static CoffeeType DisplayMainMenu()
+        private static CoffeeType GetCoffeeType()
         {
             CoffeeType? result = null;
             while (result == null)
             {
-                Console.Clear();
-                Console.WriteLine("MENU");
+                ShowMainMenu();
 
-                var coffeeOptions = coffeeService
-                .ListAll()
-                .OrderBy(c => (int)c.CoffeeType);
+                var optionSelected = Console
+                    .ReadLine()
+                    .ToString();
 
-                foreach (var option in coffeeOptions)
+                var selected = int.Parse(optionSelected);
+
+                if (Enum.IsDefined(typeof(CoffeeType), selected))
                 {
-                    Console.WriteLine($"{(int)option.CoffeeType}-{option.Description}:\t{option.Price.ToString("C")}");
+                    result = (CoffeeType)selected;
                 }
-
-                var optionSelected = Console.ReadLine();
-                var selected = int.Parse(optionSelected.ToString());
-
-                if (!coffeeOptions.Select(c => (int)c.CoffeeType).Contains(selected))
+                else
                 {
                     Console.WriteLine("Invalid option. Press any key to continue...");
                     Console.ReadKey();
                     continue;
                 }
-                else
-                {
-                    result = (CoffeeType) selected;
-                }
             }
 
             return result.Value;
+        }
+
+        private static void ShowMainMenu()
+        {
+            var coffeeOptions = coffeeService
+                .ListAll()
+                .OrderBy(c => (int)c.CoffeeType);
+
+            Console.Clear();
+
+            var builder = new StringBuilder();
+            builder.AppendLine("MAIN MENU");
+
+            foreach (var option in coffeeOptions)
+            {
+                builder.AppendLine($"{(int)option.CoffeeType}-{option.Description}:\t{option.Price.ToString("C")}");
+            }
+
+            Console.Write(builder);
+        }
+
+        private static ICoffeeBase ApplyAddOns(ICoffeeBase coffeeBase)
+        {
+            var done = false;
+
+            while (!done)
+            {
+                ShowAddOnMenu();
+
+                var optionSelected = Console.ReadLine();
+                var selected = int.Parse(optionSelected.ToString());
+
+                if (selected == 0)
+                {
+                    done = true;
+                }
+                else
+                {
+                    if (Enum.IsDefined(typeof(AddOnType), selected))
+                    {
+                        var addOnType = (AddOnType)selected;
+                        coffeeBase = addOnFactory.Create(coffeeBase, addOnType);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid option. Press any key to continue...");
+                        Console.ReadKey();
+                        continue;
+                    }
+                }
+            }
+
+            return coffeeBase;
+        }
+
+        private static void ShowAddOnMenu()
+        {
+            var addOnOptions = addOnService
+                .ListAll()
+                .OrderBy(c => (int)c.AddOnType);
+
+            Console.Clear();
+
+            var builder = new StringBuilder();
+            builder.AppendLine("ADD ON MENU");
+
+            foreach (var option in addOnOptions)
+            {
+                builder.AppendLine($"{(int)option.AddOnType}-{option.Description}:\t{option.Price.ToString("C")}");
+            }
+
+            Console.Write(builder);
         }
     }
 }

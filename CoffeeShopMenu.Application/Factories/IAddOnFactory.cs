@@ -6,6 +6,6 @@ namespace CoffeeShopMenu.Application.Factories
 {
     public interface IAddOnFactory
     {
-        IAddOnDecorator Create(ICoffee coffee, AddOnType addOnType);
+        IAddOnDecorator Create(ICoffeeBase coffeeBase, AddOnType addOnType);
     }
 }

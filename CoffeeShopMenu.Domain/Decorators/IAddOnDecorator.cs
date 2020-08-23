@@ -2,8 +2,8 @@
 
 namespace CoffeeShopMenu.Domain.Decorators
 {
-    public interface IAddOnDecorator : ICoffee
+    public interface IAddOnDecorator : ICoffeeBase
     {
-        ICoffee Coffee { get; }
+        ICoffeeBase CoffeeBase { get; }
     }
 }

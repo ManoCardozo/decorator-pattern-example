@@ -7,12 +7,12 @@ namespace CoffeeShopMenu.Application.Factories
 {
     public class AddOnFactory : IAddOnFactory
     {
-        public IAddOnDecorator Create(ICoffee coffee, AddOnType addOnType)
+        public IAddOnDecorator Create(ICoffeeBase coffeeBase, AddOnType addOnType)
         {
             switch (addOnType)
             {
                 case AddOnType.Milk:
-                    return new MilkDecorator(coffee);
+                    return new MilkDecorator(coffeeBase);
 
                 default:
                     throw new ArgumentException();

@@ -5,17 +5,20 @@ namespace CoffeeShopMenu.Domain.Decorators
 {
     public class MilkDecorator : IAddOnDecorator
     {
-        public MilkDecorator(ICoffee coffee)
+        private readonly Milk milk;
+
+        public MilkDecorator(ICoffeeBase coffeeBase)
         {
-            this.Coffee = coffee;
+            this.milk = new Milk();
+            this.CoffeeBase = coffeeBase;
         }
 
-        public ICoffee Coffee { get; }
+        public ICoffeeBase CoffeeBase { get; }
+
+        public CoffeeType CoffeeType => CoffeeBase.CoffeeType;
         
-        public string Description => $"{Coffee.Description} with Milk";
+        public string Description => $"{CoffeeBase.Description} with {milk.Description}";
 
-        public decimal Price => Coffee.Price + (decimal) 0.5;
-
-        public CoffeeType CoffeeType => throw new System.NotImplementedException();
+        public decimal Price => CoffeeBase.Price + milk.Price;
     }
 }

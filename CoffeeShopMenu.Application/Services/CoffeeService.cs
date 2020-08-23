@@ -5,7 +5,7 @@ namespace CoffeeShopMenu.Application.Services
 {
     public class CoffeeService : ICoffeeService
     {
-        public IEnumerable<ICoffee> ListAll()
+        public IEnumerable<ICoffeeBase> ListAll()
         {
             yield return new Americano();
             yield return new Cappuccino();
