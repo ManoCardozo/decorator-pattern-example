@@ -9,5 +9,10 @@ namespace CoffeeShopMenu.Domain.Entities
         public string Description => "Americano";
 
         public decimal Price => 2;
+
+        public override string ToString()
+        {
+            return $"{(int)CoffeeType}-{Description}:\t{Price.ToString("C")}";
+        }
     }
 }

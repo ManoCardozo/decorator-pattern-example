@@ -25,7 +25,11 @@ namespace CoffeeShopMenu.ConsoleUI
 
             coffee = ApplyAddOns(coffee);
 
+            Console.Clear();
+            Console.WriteLine("Your Order:");
+            Console.WriteLine(coffee.Description);
             Console.WriteLine($"Price: {coffee.Price}");
+            Console.WriteLine();
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
@@ -68,10 +72,11 @@ namespace CoffeeShopMenu.ConsoleUI
 
             var builder = new StringBuilder();
             builder.AppendLine("MAIN MENU");
+            builder.AppendLine();
 
             foreach (var option in coffeeOptions)
             {
-                builder.AppendLine($"{(int)option.CoffeeType}-{option.Description}:\t{option.Price.ToString("C")}");
+                builder.AppendLine(option.ToString());
             }
 
             Console.Write(builder);
@@ -121,11 +126,15 @@ namespace CoffeeShopMenu.ConsoleUI
 
             var builder = new StringBuilder();
             builder.AppendLine("ADD ON MENU");
+            builder.AppendLine();
 
             foreach (var option in addOnOptions)
             {
-                builder.AppendLine($"{(int)option.AddOnType}-{option.Description}:\t{option.Price.ToString("C")}");
+                builder.AppendLine(option.ToString());
             }
+
+            builder.AppendLine();
+            builder.AppendLine($"0-Finish order");
 
             Console.Write(builder);
         }
