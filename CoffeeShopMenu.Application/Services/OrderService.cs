@@ -5,7 +5,12 @@ namespace CoffeeShopMenu.Application.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly List<ICoffee> orderItems = new List<ICoffee>();
+        private List<ICoffee> orderItems = new List<ICoffee>();
+
+        public void Initialize()
+        {
+            orderItems = new List<ICoffee>();
+        }
 
         public void AddToCart(ICoffee coffee)
         {
