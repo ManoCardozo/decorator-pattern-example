@@ -1,18 +1,18 @@
 ﻿using System;
 using CoffeeShopMenu.Domain.Enums;
 using CoffeeShopMenu.Domain.Entities;
-using CoffeeShopMenu.Domain.Decorators;
+using CoffeeShopMenu.Application.Decorators;
 
 namespace CoffeeShopMenu.Application.Factories
 {
     public class AddOnFactory : IAddOnFactory
     {
-        public IAddOnDecorator Create(ICoffeeBase coffeeBase, AddOnType addOnType)
+        public IAddOnDecorator Create(ICoffee coffee, AddOnType addOnType)
         {
             switch (addOnType)
             {
                 case AddOnType.Milk:
-                    return new MilkDecorator(coffeeBase);
+                    return new MilkDecorator(coffee);
 
                 default:
                     throw new ArgumentException();

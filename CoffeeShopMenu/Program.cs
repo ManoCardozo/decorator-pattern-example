@@ -27,8 +27,8 @@ namespace CoffeeShopMenu.ConsoleUI
 
             Console.Clear();
             Console.WriteLine("Your Order:");
-            Console.WriteLine(coffee.Description);
-            Console.WriteLine($"Price: {coffee.Price}");
+            Console.WriteLine(coffee.GetDescription());
+            Console.WriteLine($"Price: {coffee.GetPrice()}");
             Console.WriteLine();
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
@@ -82,7 +82,7 @@ namespace CoffeeShopMenu.ConsoleUI
             Console.Write(builder);
         }
 
-        private static ICoffeeBase ApplyAddOns(ICoffeeBase coffeeBase)
+        private static ICoffee ApplyAddOns(ICoffee coffee)
         {
             var done = false;
 
@@ -102,7 +102,7 @@ namespace CoffeeShopMenu.ConsoleUI
                     if (Enum.IsDefined(typeof(AddOnType), selected))
                     {
                         var addOnType = (AddOnType)selected;
-                        coffeeBase = addOnFactory.Create(coffeeBase, addOnType);
+                        coffee = addOnFactory.Create(coffee, addOnType);
                     }
                     else
                     {
@@ -113,7 +113,7 @@ namespace CoffeeShopMenu.ConsoleUI
                 }
             }
 
-            return coffeeBase;
+            return coffee;
         }
 
         private static void ShowAddOnMenu()

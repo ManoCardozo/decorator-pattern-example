@@ -6,7 +6,7 @@ namespace CoffeeShopMenu.Application.Factories
 {
     public class CoffeeFactory : ICoffeeFactory
     {
-        public ICoffeeBase Create(CoffeeType coffeeType)
+        public ICoffee Create(CoffeeType coffeeType)
         {
             switch (coffeeType)
             {

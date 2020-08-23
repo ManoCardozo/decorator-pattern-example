@@ -1,11 +1,11 @@
-﻿using CoffeeShopMenu.Domain.Decorators;
+﻿using CoffeeShopMenu.Domain.Enums;
 using CoffeeShopMenu.Domain.Entities;
-using CoffeeShopMenu.Domain.Enums;
+using CoffeeShopMenu.Application.Decorators;
 
 namespace CoffeeShopMenu.Application.Factories
 {
     public interface IAddOnFactory
     {
-        IAddOnDecorator Create(ICoffeeBase coffeeBase, AddOnType addOnType);
+        IAddOnDecorator Create(ICoffee coffee, AddOnType addOnType);
     }
 }

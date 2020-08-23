@@ -1,4 +1,5 @@
 ﻿using CoffeeShopMenu.Domain.Enums;
+using System.Collections.Generic;
 
 namespace CoffeeShopMenu.Domain.Entities
 {
