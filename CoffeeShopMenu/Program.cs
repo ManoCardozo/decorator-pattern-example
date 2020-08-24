@@ -9,6 +9,8 @@ namespace CoffeeShopMenu.ConsoleUI
     {
         static void Main(string[] args)
         {
+            Console.Title = "Coffee Shop Menu";
+
             ServiceLocator.Setup();
             var orderService = ServiceLocator.GetService<IOrderService>();
             var orderScreen = new OrderScreen();
