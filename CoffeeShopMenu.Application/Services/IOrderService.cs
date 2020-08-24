@@ -7,7 +7,7 @@ namespace CoffeeShopMenu.Application.Services
     {
         void Initialize();
 
-        void AddToCart(ICoffee coffee);
+        void AddToOrder(ICoffee coffee);
         List<ICoffee> GetOrderItems();
     }
 }

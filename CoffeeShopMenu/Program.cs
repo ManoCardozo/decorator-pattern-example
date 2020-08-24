@@ -46,7 +46,7 @@ namespace CoffeeShopMenu.ConsoleUI
             coffee = addOnScreen.CaptureAddOns(coffee);
 
             var orderService = ServiceLocator.GetService<IOrderService>();
-            orderService.AddToCart(coffee);
+            orderService.AddToOrder(coffee);
         }
 
         private static bool IsOrderComplete()

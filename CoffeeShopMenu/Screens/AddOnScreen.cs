@@ -72,7 +72,7 @@ namespace CoffeeShopMenu.ConsoleUI.Screens
             }
 
             builder.AppendLine();
-            builder.AppendLine($"0 - Add to Cart");
+            builder.AppendLine($"0 - Add to Order");
 
             builder.AppendLine();
             builder.Append("Add on choice: ");

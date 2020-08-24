@@ -12,7 +12,7 @@ namespace CoffeeShopMenu.Application.Services
             orderItems = new List<ICoffee>();
         }
 
-        public void AddToCart(ICoffee coffee)
+        public void AddToOrder(ICoffee coffee)
         {
             orderItems.Add(coffee);
         }
